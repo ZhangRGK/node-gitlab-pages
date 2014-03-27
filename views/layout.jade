@@ -1,0 +1,28 @@
+doctype html
+html(lang="zh-cn")
+    head
+        title= title
+        link(rel="stylesheet",href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet",href="/stylesheets/layout.css")
+        block linkcss
+        meta(name="viewport",content="width=device-width,initial-scale=1.0")
+    body
+        header.navbar.navbar-inverse.navbar-fixed-top(role="banner")
+            .container
+                .navbar-header
+                    button.navbar-toggle.collasped(type="button",data-toggle="collapse",data-target=".id-navbar-collapse")
+                        span.sr-only 菜单
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href="/") 信龙
+                .collapse.navbar-collapse.id-navbar-collapse(role="navigation",style="height: 1px;")
+                    .navbar-form.navbar-right
+                        .form-group
+                            input#search.form-control(type="text",placeholder="在#{scope}中查询")
+        block content
+        script(src="/javascripts/lib/jquery-1.11.0.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")
+        block jsfile
+
+

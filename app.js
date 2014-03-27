@@ -21,8 +21,18 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 404 next required
+app.use(function (req, res, next) {
+    res.render('404', { title: '404', url: req.url, err: "404" });
+});
+
+// 500 next required
+app.use(function (err, req, res, next) {
+    res.render('500', { title: '500', url: req.url, err: err });
+});
 
 //register markdown
 app.engine('md', function(path, options, fn){
@@ -38,6 +48,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.get('/', routes.index);
 app.get('/blogs/:user/:title', routes.blogs);
 
 http.createServer(app).listen(app.get('port'), function(){

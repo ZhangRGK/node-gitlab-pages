@@ -2,7 +2,7 @@ var path = require('path');
 
 
 exports.index = function(req, res) {
-    res.render('index',{title:'gitlab-pages'});
+    res.render('index',{title:'gitlab-pages',scope:'所有文档'});
 };
 
 exports.blogs = function(req, res, next) {
@@ -14,11 +14,10 @@ exports.blogs = function(req, res, next) {
         '.md'
     ].join('');
     var filePath = path.normalize('./' + urlPath);
-    console.log(filePath);
-    console.log(urlPath);
-    path.exists(filePath, function  (exists) {
+
+    fs.exists(filePath, function  (exists) {
         if(!exists) {
-            res.render('404',{title:"gitlab-pages"});
+            res.render("404");
         } else {
             res.render(urlPath, {layout: false});
         }

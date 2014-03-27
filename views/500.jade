@@ -3,14 +3,11 @@ html(lang="zh-cn")
     head
         title= title
         link(rel="stylesheet",href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet",href="/stylesheets/layout.css")
+        block linkcss
         meta(name="viewport",content="width=device-width,initial-scale=1.0")
     body(style="background-color:#EEE")
         .jumbotron
-            h1 404
-            p 您访问的内容没有找到。
-            form.form
-                .form-group
-                    input.form-control(type="text",placeholder="在所有文档中查询")
-                .form-group
-                    button.btn.btn-primary 查询
+            h1 500
+            p 您访问的资源出现错误。
         script(src="/bootstrap/js/bootstrap.min.js")
