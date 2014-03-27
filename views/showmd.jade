@@ -1,0 +1,24 @@
+extends layout
+block linkcss
+    title= title
+    link(rel="stylesheet",href="/stylesheets/desert.css")
+block content
+    .container(style="margin-top:50px;")
+        .col-md-2#nav
+            ul.nav
+                li
+                    a(href="#") A
+                li
+                    span.glyphicon.glyphicon-minus
+                    a(href="#") B
+                    ul.nav
+                        li
+                            a(href="#") a
+                        li
+                            a(href="#") b
+        .col-md-10
+            | !{content}
+
+block jsfile
+    script(type='text/javascript', src='/javascripts/lib/prettify.js')
+    script(type='text/javascript', src='/javascripts/showmd.js')
