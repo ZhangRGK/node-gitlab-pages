@@ -4,11 +4,11 @@
 
 ## 依赖
 
-(nodegit)[https://github.com/nodegit/nodegit]
+[nodegit](https://github.com/nodegit/nodegit)
 
-(gitlab-api)[https://github.com/gitlabhq/gitlabhq/tree/master/doc/api]
+[gitlab-api](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api)
 
-(markdown-js)[https://github.com/evilstreak/markdown-js]
+[markdown-js](https://github.com/evilstreak/markdown-js)
 
 ## 安装(ubuntu)
 
@@ -18,4 +18,4 @@
 
 ## 文档
 
-(nodegit-api)[http://www.nodegit.org/nodegit/]
+[nodegit-api](http://www.nodegit.org/nodegit/)
