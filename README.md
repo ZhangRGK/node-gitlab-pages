@@ -19,3 +19,9 @@
 ## 文档
 
 [nodegit-api](http://www.nodegit.org/nodegit/)
+
+## TODO
+
+用户验证
+
+web hooks

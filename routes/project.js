@@ -83,13 +83,3 @@ exports.update = function(req, res) {
         }
     })
 };
-
-exports.list = function(req, res) {
-    projectService.getAll(function(err,projects) {
-        if(err) {
-            res.json({err:err,projects:null});
-        } else {
-            res.json({err:null,projects:projects});
-        }
-    });
-};
