@@ -1,10 +1,11 @@
 extends layout
 block content
     .container(style="margin-top:50px;")
-        .col-xs-12.col-sm-12.col-md-12.col-lg-12
-            h1 ProjectA
-                .btn-group.btn-group-xs(style="margin-left:20px")
-                    a.btn.btn-primary(href="/blogs/zr/index.html") Demo
-                    a.btn.btn-default(href="/blogs/zr/index") Doc
-            p test project A
-            hr
+        for project in projects
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                h1 #{project.ns}/#{project.project}
+                    .btn-group.btn-group-xs(style="margin-left:20px")
+                        a.btn.btn-primary(href="/project/#{project.ns}/#{project.project}/index.html") Proto
+                        a.btn.btn-default(href="/project/#{project.ns}/#{project.project}/index") Doc
+                p= project.desc
+                hr

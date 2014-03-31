@@ -3,6 +3,7 @@
         {
             "ns":"zr",
             "project":"keenspace",
+            "desc":"keens personal space",
             "url":"http://221.213.57.38:8080/zr/keenspace.git",
             "doc":"master",
             "proto":null

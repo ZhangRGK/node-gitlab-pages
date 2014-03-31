@@ -27,13 +27,15 @@ exports.html = function(req, res) {
 
 exports.blogs = function(req, res) {
     var urlPath = [
-        req.params.ns,
         'repo/',
+        req.params.ns,
+        '/',
         req.params.project,
         '/doc/',
         req.params.title?req.params.title:"index",
         '.md'
     ].join('');
+    console.log("urlPath:"+urlPath);
     var filePath = path.normalize('./' + urlPath);
     fs.exists(filePath, function  (exists) {
         if(!exists) {

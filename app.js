@@ -56,6 +56,4 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-taskqueue.start(function(task) {
-    console.log("task:"+task.project+" is running...");
-});
+taskqueue.start();

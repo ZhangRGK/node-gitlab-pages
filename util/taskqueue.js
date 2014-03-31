@@ -14,18 +14,18 @@ exports.isComplete = function(callback) {
     callback(complete);
 };
 
-var exec = function(callback) {
+var exec = function() {
     complete = false;
     if(queue.length) {
         var task = queue.shift();
         clone(task.url,"views/project",{"checkout_branch": "master"},function() {
-            callback(task);
+            console.log("task:"+task.project+" is running...");
             complete = true;
         });
     }
 };
 
-exports.start = function(callback) {
+exports.start = function() {
     console.log("task queue is start...");
-    setInterval(exec(callback),60000);
+    setInterval(exec,1000);
 };
