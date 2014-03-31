@@ -1,5 +1,5 @@
 
-var taskqueue = require("util/taskqueue");
+var taskqueue = require("../util/taskqueue");
 var fs = require("fs");
 
 var config = "../config.json";

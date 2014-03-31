@@ -18,7 +18,6 @@ var exec = function(callback) {
     complete = false;
     if(queue.length) {
         var task = queue.shift();
-        taskstack.push(task);
         clone(task.url,"views/project",{"checkout_branch": "master"},function() {
             callback(task);
             complete = true;

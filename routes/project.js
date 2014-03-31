@@ -3,7 +3,7 @@ var markdown = require('markdown-js');
 var fs = require('fs');
 var clone = require("nodegit").Repo.clone;
 
-var projectService = require('');
+var projectService = require('../service/project');
 
 exports.html = function(req, res) {
     var urlPath = [
