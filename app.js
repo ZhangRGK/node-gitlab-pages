@@ -4,11 +4,16 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
 var app = express();
+
+var taskqueue = require('./util/taskqueue');
+
+var routes = require('./routes');
+var project = require('./routes/project');
+var hooks = require('./routes/hooks');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -38,9 +43,19 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/blogs/:project/:title.html', routes.html);
-app.get('/blogs/:project/:title', routes.blogs);
+
+app.get('/project/:ns/:project/:title.html', project.html);
+app.get('/project/:ns/:project/:title', project.blogs);
+app.post('/project',project.add);
+app.put('/project',project.update);
+
+app.post('/hooks/doc',hooks.pullDoc);
+app.post('/hooks/proto',hooks.pullProto);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+taskqueue.start(function(task) {
+    console.log("task:"+task.project+" is running...");
 });

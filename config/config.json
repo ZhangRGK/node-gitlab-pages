@@ -1,0 +1,11 @@
+{
+    "projects":[
+        {
+            "ns":"zr",
+            "project":"keenspace",
+            "url":"http://221.213.57.38:8080/zr/keenspace.git",
+            "doc":"master",
+            "proto":null
+        }
+    ]
+}
