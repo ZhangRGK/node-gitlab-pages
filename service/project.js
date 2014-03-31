@@ -1,12 +1,12 @@
-var fs = require("fs");
+var fs = require("fs-extra");
 
-var config = "../config/config.json";
+var config = "config/config.json";
 
 
 exports.add = function (p, callback) {
     fs.exists(config, function (exists) {
         if (exists) {
-            fs.readJSONSync(config, function (err,data) {
+            fs.readJSON(config, function (err,data) {
                 if(err || (!data)) {
                     callback(err ? err : "cannot read projects data in config.json.");
                 } else {
@@ -21,7 +21,7 @@ exports.add = function (p, callback) {
                 }
             });
         } else {
-            callback("cannot find ../config/config.json file.");
+            callback("cannot find config/config.json file.");
         }
     });
 };
@@ -46,13 +46,15 @@ exports.update = function (projects, callback) {
 exports.getAll = function(callback) {
     fs.exists(config,function(exists) {
         if(exists) {
-            fs.readJsonSync(config,function(err,data) {
-                if(err || (!data)) {
-                    callback(err ? err : "cannot read projects data in config.json.",null);
+            fs.readJson(config,function(err,data) {
+                if(err) {
+                    callback(err,null);
                 } else {
                     callback(null,data.projects);
                 }
             });
+        } else {
+            callback("cannot find ../config/config.json file.",null);
         }
     });
 };

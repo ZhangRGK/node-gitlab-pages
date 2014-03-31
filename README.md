@@ -25,3 +25,5 @@
 用户验证
 
 web hooks
+
+同步GitLab账户/登录验证

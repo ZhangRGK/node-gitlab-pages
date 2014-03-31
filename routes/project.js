@@ -7,8 +7,9 @@ var projectService = require('../service/project');
 
 exports.html = function(req, res) {
     var urlPath = [
-        req.params.ns,
         'repo/',
+        req.params.ns,
+        '/',
         req.params.project,
         '/proto/',
         req.params.title?req.params.title:"index",
@@ -83,3 +84,9 @@ exports.update = function(req, res) {
         }
     })
 };
+
+exports.list = function(req, res) {
+    projectService.getAll(function(err,projects) {
+        res.render('project',{"title":'gitlab-pages',"scope":'所有文档',"projects":projects});
+    });
+}
