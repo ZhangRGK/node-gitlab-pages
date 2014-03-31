@@ -1,6 +1,8 @@
-var config = require("../config/config.json");
+var projectService = require("../service/project");
 
 
 exports.index = function(req, res) {
-    res.render('index',{title:'gitlab-pages',scope:'所有文档',projects:config.projects});
+    projectService.getAll(function(err,projects) {
+        res.render('index',{"title":'gitlab-pages',"scope":'所有文档',"projects":projects});
+    });
 };

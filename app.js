@@ -46,6 +46,8 @@ app.get('/', routes.index);
 
 app.get('/project/:ns/:project/:title.html', project.html);
 app.get('/project/:ns/:project/:title', project.blogs);
+
+app.get('/project',project.list);
 app.post('/project',project.add);
 app.put('/project',project.update);
 

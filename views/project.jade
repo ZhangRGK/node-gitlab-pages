@@ -1,0 +1,89 @@
+doctype html
+html(lang="zh-cn")
+    head
+        title= title
+        link(rel="stylesheet",href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet",href="/stylesheets/project.css")
+        meta(name="viewport",content="width=device-width,initial-scale=1.0")
+    body
+        header.navbar.navbar-inverse.navbar-fixed-top(role="banner")
+            .container
+                .navbar-header
+                    button.navbar-toggle.collasped(type="button",data-toggle="collapse",data-target=".id-navbar-collapse")
+                        span.sr-only 菜单
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href="/") 信龙
+                .collapse.navbar-collapse.id-navbar-collapse(role="navigation",style="height: 1px;")
+                    .btn-group.btn-group.pull-right
+                        button.btn.btn-primary.navbar-btn 新增
+                        button.btn.btn-default.navbar-btn 修改
+        .panel.panel-default.affix.col-xs-10.col-sm-10.col-md-10.col-lg-10.hidden
+            .panel-heading 项目信息
+            .panel-body
+                form
+                    .form-group
+                        label.col-md-2.control-label 命名空间
+                        input.form-control(placeholder="命名空间")
+                    .form-group
+                        labelcontrol-label 项目名
+                        input.form-control(placeholder="项目名")
+                    .form-group
+                        label.col-md-2.control-label 项目地址
+                        input.form-control(placeholder="项目地址")
+                    .form-group
+                        label.col-md-2.control-label 文档分支
+                        input.form-control(value="doc")
+                    .form-group
+                        label.col-md-2.control-label 原型分支
+                        input.form-control(value="proto")
+                    .form-group
+                        .btn-group
+                            button.btn.btn-primary 提交
+                            button.btn.btn-default 取消
+        .container#content
+            table.table.table-responsive.hidden-xs
+                thead
+                    tr
+                        td.col-xs-1.col-sm-1.col-md-1.col-lg-1
+                        td.col-xs-1.col-sm-1.col-md-1.col-lg-1 命名空间
+                        td.col-xs-3.col-sm-3.col-md-3.col-lg-3 项目名
+                        td.col-xs-5.col-sm-5.col-md-5.col-lg-5 项目地址
+                        td.col-xs-1.col-sm-1.col-md-1.col-lg-1 文档分支
+                        td.col-xs-1.col-sm-1.col-md-1.col-lg-1 原型分支
+                tbody
+                    for project in projects
+                        tr
+                            td(style="text-align:right")
+                                span.glyphicon.glyphicon-minus-sign
+                            td
+                                input(type="text",value="#{project.ns}",readonly="true")
+                            td
+                                input(type="text",value="#{project.project}",readonly="true")
+                            td
+                                input(type="text",value="#{project.url}",readonly="true")
+                            td
+                                input(type="text",value="#{project.doc?project.doc:''}",readonly="true")
+                            td
+                                input(type="text",value="#{project.proto?project.proto:''}",readonly="true")
+            #xs-list.visible-xs
+                for project in projects
+                    .row
+                        .col-xs-1
+                            input(type="text",value="#{project.ns}",readonly="true")
+                        .col-xs-1
+                            span \
+                        .col-xs-2
+                            input(type="text",value="#{project.project}",readonly="true")
+                    .row
+                        .col-xs-6
+                            input(type="text",value="#{project.doc?project.doc:''}",readonly="true")
+                        .col-xs-6
+                            input(type="text",value="#{project.proto?project.proto:''}",readonly="true")
+                    .row
+                        .col-xs-12
+                            input(type="text",value="#{project.url}",readonly="true")
+        script(src="/javascripts/lib/jquery-1.11.0.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")
+        script(src="/javascripts/project.js")
