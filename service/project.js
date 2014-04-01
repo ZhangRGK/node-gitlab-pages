@@ -11,7 +11,7 @@ exports.add = function (p, callback) {
                     callback(err ? err : "cannot read projects data in config.json.");
                 } else {
                     data.projects.push(p);
-                    fs.writeJSONSync(config, p, function (err) {
+                    fs.writeJSON(config, data,null, function (err) {
                         if (err) {
                             callback(err);
                         } else {

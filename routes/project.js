@@ -1,7 +1,7 @@
 var path = require('path');
 var markdown = require('markdown-js');
 var fs = require('fs');
-var clone = require("nodegit").Repo.clone;
+var git = require("nodegit");
 
 var projectService = require('../service/project');
 
@@ -62,15 +62,15 @@ exports.add = function(req, res) {
             res.json(err);
         } else {
             if(p.doc) {
-                clone(p.url,"../repo/"+ p.ns+"/"+ p.project+"/doc",{"checkout_branch": "doc"},function() {
-                    console.log();
+                git.Repo.clone(p.url,"repo/"+ p.ns+"/"+ p.project+"/doc","checkout_branch:"+ p.doc,function(err,repo) {
+                    console.log("clone doc:"+err);
                 });
             }
-            if(p.proto) {
-                clone(p.url,"../repo/"+ p.ns+"/"+ p.project+"/proto",{"checkout_branch": "proto"},function() {
-                    console.log();
-                });
-            }
+//            if(p.proto) {
+//                git.Repo.clone(p.url,"../repo/"+ p.ns+"/"+ p.project+"/proto",{"checkout_branch": p.proto},function(err,repo) {
+//                    console.log("clone proto:"+err);
+//                });
+//            }
             res.json("添加新项目成功");
         }
     });
