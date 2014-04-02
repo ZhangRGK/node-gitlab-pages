@@ -1,3 +1,4 @@
+var process = require('child_process');
 
 var queue = [];
 
@@ -18,14 +19,20 @@ var exec = function() {
     complete = false;
     if(queue.length) {
         var task = queue.shift();
-        clone(task.url,"views/project",{"checkout_branch": "master"},function() {
-            console.log("task:"+task.project+" is running...");
-            complete = true;
-        });
+        var pullCmd = [
+            "cd repo/",
+            task.ns,
+            "/",
+            task.project,
+            "/doc && git pull ",
+            task.url,
+            " doc:doc"
+        ].join();
+        process.exec(pullCmd);
     }
 };
 
 exports.start = function() {
     console.log("task queue is start...");
-    setInterval(exec,1000);
+    setInterval(exec,10000);
 };

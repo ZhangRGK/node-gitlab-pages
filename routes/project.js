@@ -1,7 +1,7 @@
 var path = require('path');
 var markdown = require('markdown-js');
 var fs = require('fs');
-var git = require("nodegit");
+var process = require('child_process');
 
 var projectService = require('../service/project');
 
@@ -61,16 +61,36 @@ exports.add = function(req, res) {
         if(err) {
             res.json(err);
         } else {
+            if(fs.exists("repo/"+ p.ns+"/"+ p.project)) {
+                res.json("该项目已经存在");
+                return;
+            };
             if(p.doc) {
-                git.Repo.clone(p.url,"repo/"+ p.ns+"/"+ p.project+"/doc","checkout_branch:"+ p.doc,function(err,repo) {
-                    console.log("clone doc:"+err);
-                });
+                var cloneDoc = [
+                    "git clone ",
+                    p.url,
+                    " repo/",
+                    p.ns,
+                    "/",
+                    p.project,
+                    "/doc -b ",
+                    p.doc
+                ].join();
+                process.exec(cloneDoc);
             }
-//            if(p.proto) {
-//                git.Repo.clone(p.url,"../repo/"+ p.ns+"/"+ p.project+"/proto",{"checkout_branch": p.proto},function(err,repo) {
-//                    console.log("clone proto:"+err);
-//                });
-//            }
+            if(p.proto) {
+                var cloneProto = [
+                    "git clone ",
+                    p.url,
+                    " repo/",
+                    p.ns,
+                    "/",
+                    p.project,
+                    "/proto -b ",
+                    p.proto
+                ].join();
+                process.exec(cloneProto);
+            }
             res.json("添加新项目成功");
         }
     });
