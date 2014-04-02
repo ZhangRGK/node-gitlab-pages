@@ -1,3 +1,16 @@
 #search {
     width:400px;
 }
+
+.alert-bar {
+    width:100%;
+    position:fixed;
+    opacity: 0.95;
+    z-index:99;
+    bottom: 0px;
+    text-align: center;
+}
+
+.alert-bar div {
+    margin-bottom: 0px;
+}

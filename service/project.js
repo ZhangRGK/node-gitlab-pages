@@ -30,7 +30,7 @@ exports.update = function (projects, callback) {
     fs.exists(config,function(exists) {
         if(exists) {
             var data = {"projects":projects};
-            fs.writeFileSync(config,data,function(err) {
+            fs.writeJSON(config,data,null,function(err) {
                 if (err) {
                     callback(err);
                 } else {

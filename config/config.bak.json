@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "ns": "zr",
+      "project": "keenspaces",
+      "url": "git@221.213.57.38:zr/node-gitlab-pages.git",
+      "doc": "doc",
+      "proto": "proto"
+    },
+    {
+      "ns": "zr",
+      "project": "keenspaces",
+      "url": "git@221.213.57.38:zr/node-gitlab-pages.git",
+      "doc": "doc",
+      "proto": "proto"
+    },
+    {
+      "ns": "zr",
+      "project": "keenspaces",
+      "url": "git@221.213.57.38:zr/node-gitlab-pages.git",
+      "doc": "doc",
+      "proto": "proto"
+    }
+  ]
+}

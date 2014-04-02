@@ -61,37 +61,40 @@ exports.add = function(req, res) {
         if(err) {
             res.json(err);
         } else {
-            if(fs.exists("repo/"+ p.ns+"/"+ p.project)) {
-                res.json("该项目已经存在");
-                return;
-            };
-            if(p.doc) {
-                var cloneDoc = [
-                    "git clone ",
-                    p.url,
-                    " repo/",
-                    p.ns,
-                    "/",
-                    p.project,
-                    "/doc -b ",
-                    p.doc
-                ].join();
-                process.exec(cloneDoc);
-            }
-            if(p.proto) {
-                var cloneProto = [
-                    "git clone ",
-                    p.url,
-                    " repo/",
-                    p.ns,
-                    "/",
-                    p.project,
-                    "/proto -b ",
-                    p.proto
-                ].join();
-                process.exec(cloneProto);
-            }
-            res.json("添加新项目成功");
+            fs.exists("repo/"+ p.ns+"/"+ p.project,function(exists) {
+                if(exists) {
+                    if(p.doc) {
+                        var cloneDoc = [
+                            "git clone ",
+                            p.url,
+                            " repo/",
+                            p.ns,
+                            "/",
+                            p.project,
+                            "/doc -b ",
+                            p.doc
+                        ].join('');
+                        process.exec(cloneDoc);
+                    }
+                    if(p.proto) {
+                        var cloneProto = [
+                            "git clone ",
+                            p.url,
+                            " repo/",
+                            p.ns,
+                            "/",
+                            p.project,
+                            "/proto -b ",
+                            p.proto
+                        ].join('');
+                        process.exec(cloneProto);
+                    }
+                    res.json("添加新项目成功");
+                } else {
+                    res.json("该项目已经存在");
+                }
+            });
+
         }
     });
 };

@@ -20,6 +20,7 @@ html(lang="zh-cn")
                         button#add.btn.btn-primary.navbar-btn 新增
                         button#edit.btn.btn-default.navbar-btn 修改
                         button#save.btn.btn-success.navbar-btn.hidden 保存
+        .alert-bar
         .panel.panel-default.affix.col-xs-10.col-sm-10.col-md-10.col-lg-10.hidden
             .panel-heading 项目信息
             .panel-body
@@ -76,4 +77,5 @@ html(lang="zh-cn")
                                 input.t_proto(type="text",value="#{project.desc?project.desc:''}",readonly="true")
         script(src="/javascripts/lib/jquery-1.11.0.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
+        script(src="/javascripts/layout.js")
         script(src="/javascripts/project.js")

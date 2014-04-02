@@ -13,13 +13,13 @@ $(function() {
             "proto":$("#f_proto").val()
         };
         $.post("/project",project)
-            .done(function(data) {
-                console.log(data);
+            .done(function() {
                 $(".panel").addClass("hidden");
                 $("#edit").removeAttr("disabled");
+                window.location.reload();
             })
             .fail(function(data) {
-                console.log(data);
+                showMessage(JSON.stringify(data),"danger",null);
             });
         return false;
     });
@@ -50,14 +50,16 @@ $(function() {
             }
             projects.push(project);
         });
-
-        $.ajax("/project",{"data":projects,"type":"put"})
+        $.ajax("/project",{"data":{"projects":projects},"type":"put"})
             .done(function() {
                 $("table input").css("border","0px").attr("readonly","true");
                 $("table .glyphicon").addClass("hidden");
+                $("#save").addClass("hidden");
                 $("#edit").removeClass("hidden");
-                $(this).addClass("hidden");
                 $("#add").removeAttr("disabled");
+                window.location.reload();
+            }).fail(function(data) {
+                showMessage(data.responseText.substring(0,data.responseText.indexOf("\n")),"danger",null);
             });
     });
 

@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
     res.render('404', { title: '404', url: req.url, err: "404" });
 });
 
-// 500 next required
+//500 next required
 app.use(function (err, req, res, next) {
     res.render('500', { title: '500', url: req.url, err: err });
 });
