@@ -5,12 +5,12 @@ var fs = require("fs");
 var config = "../config.json";
 
 exports.pullDoc = function(req,res) {
-    var ns = req.body.ns;
-    var project = req.body.project;
+    var ns = req.body.user_name;
+    var project = req.body.repository.name;
 
     fs.exists(config,function(exists) {
         if(exists) {
-            fs.readJSONSync(config,function(err,data) {
+            fs.readJSON(config,function(err,data) {
                 if(err || (!data)) {
                     res.json(err ? err : "cannot read projects data in config.json.",null);
                 } else {
@@ -29,12 +29,12 @@ exports.pullDoc = function(req,res) {
 };
 
 exports.pullProto = function(req,res) {
-    var ns = req.body.ns;
-    var project = req.body.project;
+    var ns = req.body.user_name;
+    var project = req.body.repository.name;
 
     fs.exists(config,function(exists) {
         if(exists) {
-            fs.readJSONSync(config,function(err,data) {
+            fs.readJSON(config,function(err,data) {
                 if(err || (!data)) {
                     res.json(err ? err : "cannot read projects data in config.json.",null);
                 } else {

@@ -1,0 +1,31 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ececec;
+}
+.signIn-form {
+  margin: 0 auto;
+  max-width: 330px;
+  padding: 15px;
+}
+.signIn-form div {
+  margin-top: 10px;
+}
+.signIn-form div input[type=text] {
+  height: 40px;
+  border-radius: 4px 4px 0px 0px;
+}
+.signIn-form div input[type=password] {
+  height: 40px;
+  border-radius: 0px 0px 4px 4px;
+}
+.signIn-form div span {
+  margin-left: 5px;
+}
+.signIn-form div div {
+  margin-bottom: 5px;
+  color: #888;
+}
+.signIn-form div a {
+  font-size: 20px;
+}

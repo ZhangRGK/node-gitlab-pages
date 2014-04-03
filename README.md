@@ -17,11 +17,9 @@
 
 ## TODO
 
-用户验证
+用户验证(待测试)
 
-web hooks
-
-同步GitLab账户/登录验证
+web hooks(待测试)
 
 project 页面手机展示
 
