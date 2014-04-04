@@ -1,11 +1,4 @@
 {
   "projects": [
-    {
-      "ns": "zrb",
-      "project": "ynzqservice_doc",
-      "url": "http://221.213.57.38:8080/zrb/ynzqservice_doc.git",
-      "doc": "master",
-      "proto": "proto"
-    }
   ]
 }
