@@ -54,7 +54,6 @@ exports.doc = function(req, res) {
 
 exports.static = function(req, res) {
     var title = req.params[0];
-    console.log(title);
     var urlPath = [
         'repo/',
         req.params.ns,
@@ -63,7 +62,6 @@ exports.static = function(req, res) {
         '/doc/',
         title
     ].join('');
-    console.log("urlPath:"+urlPath);
     var filePath = path.normalize('./' + urlPath);
     fs.exists(filePath, function  (exists) {
         if(!exists) {

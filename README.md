@@ -17,10 +17,8 @@
 
 ## TODO
 
-用户验证(待测试)
-
-web hooks(待测试)
-
-project 页面手机展示
-
-修改ui与gitlab相近
+- web hooks(待测试)
+- 登录后写入cookies保持登录状态
+- 登出按钮
+- project 页面手机展示
+- 修改ui与gitlab相近
