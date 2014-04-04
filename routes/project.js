@@ -26,14 +26,16 @@ exports.html = function(req, res) {
     });
 };
 
-exports.blogs = function(req, res) {
+exports.doc = function(req, res) {
+    var title = req.params[0];
+    console.log(title);
     var urlPath = [
         'repo/',
         req.params.ns,
         '/',
         req.params.project,
         '/doc/',
-        req.params.title?req.params.title:"index",
+        title?title:"readme",
         '.md'
     ].join('');
     console.log("urlPath:"+urlPath);
@@ -45,6 +47,29 @@ exports.blogs = function(req, res) {
             var content = fs.readFileSync(filePath, "utf-8");
             var html_content = markdown.parse(content);
             res.render("showmd", {title: req.params.title ,content:html_content,scope:req.params.project+"项目",type:"md"});
+        }
+    });
+};
+
+
+exports.static = function(req, res) {
+    var title = req.params[0];
+    console.log(title);
+    var urlPath = [
+        'repo/',
+        req.params.ns,
+        '/',
+        req.params.project,
+        '/doc/',
+        title
+    ].join('');
+    console.log("urlPath:"+urlPath);
+    var filePath = path.normalize('./' + urlPath);
+    fs.exists(filePath, function  (exists) {
+        if(!exists) {
+            res.render("404",{title:"gitlab-pages"});
+        } else {
+            res.sendfile(filePath);
         }
     });
 };
@@ -62,7 +87,7 @@ exports.add = function(req, res) {
             res.json(err);
         } else {
             fs.exists("repo/"+ p.ns+"/"+ p.project,function(exists) {
-                if(exists) {
+                if(!exists) {
                     if(p.doc) {
                         var cloneDoc = [
                             "git clone ",
@@ -75,6 +100,7 @@ exports.add = function(req, res) {
                             p.doc
                         ].join('');
                         process.exec(cloneDoc);
+                        console.log("执行命令: "+cloneDoc);
                     }
                     if(p.proto) {
                         var cloneProto = [
@@ -88,6 +114,7 @@ exports.add = function(req, res) {
                             p.proto
                         ].join('');
                         process.exec(cloneProto);
+                        console.log("执行命令: "+cloneProto);
                     }
                     res.json("添加新项目成功");
                 } else {
@@ -101,9 +128,14 @@ exports.add = function(req, res) {
 
 exports.update = function(req, res) {
     var projects = req.body.projects;
+    if(!projects) {
+        projects = [];
+    }
     projectService.update(projects,function(err) {
         if(err) {
             res.json(err);
+        } else {
+            res.json("success");
         }
     })
 };

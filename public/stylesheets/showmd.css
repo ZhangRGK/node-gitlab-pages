@@ -6,25 +6,25 @@
     border-right:1px #DDD solid;
 }
 
-.nav > li > a {
+#tree > li > a {
     font-size: 16px;
     padding: 5px 10px;
     color:#666;
     font-weight:200;
 }
 
-.nav > li > a:hover{
+#tree > li > a:hover{
     background-color: #F0F0F0;
     color: #000;
     font-weight: 400;
 }
 
-.nav > li > a.active {
+#tree > li > a.active {
     font-weight:900;
     color:#000;
 }
 
-.nav ul {
+#tree ul {
     display:none;
 }
 
@@ -32,7 +32,7 @@
     display:block;
 }
 
-.nav > li > ul > li > a {
+#tree > li > ul > li > a {
     color:#888
     font-size: 14px;
     padding: 5px 10px 5px 25px;

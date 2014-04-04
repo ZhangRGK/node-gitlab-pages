@@ -50,14 +50,19 @@ $(function() {
             }
             projects.push(project);
         });
+        console.log(projects);
         $.ajax("/project",{"data":{"projects":projects},"type":"put"})
-            .done(function() {
-                $("table input").css("border","0px").attr("readonly","true");
-                $("table .glyphicon").addClass("hidden");
-                $("#save").addClass("hidden");
-                $("#edit").removeClass("hidden");
-                $("#add").removeAttr("disabled");
-                window.location.reload();
+            .done(function(data) {
+                if(data == "success") {
+                    $("table input").css("border","0px").attr("readonly","true");
+                    $("table .glyphicon").addClass("hidden");
+                    $("#save").addClass("hidden");
+                    $("#edit").removeClass("hidden");
+                    $("#add").removeAttr("disabled");
+                    window.location.reload();
+                } else {
+                    showMessage(data,"danger",null);
+                }
             }).fail(function(data) {
                 showMessage(data.responseText.substring(0,data.responseText.indexOf("\n")),"danger",null);
             });

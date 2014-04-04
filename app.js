@@ -17,7 +17,7 @@ var hooks = require('./routes/hooks');
 var filter = require('./routes/filter');
 
 // all environments
-app.set('port', process.env.PORT || 3005);
+app.set('port', process.env.PORT || 8081);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -53,8 +53,8 @@ app.get('*',filter.premission);
 app.get('/', routes.index);
 
 app.get('/project/:ns/:project/:title.html', project.html);
-app.get('/project/:ns/:project/:title', project.blogs);
-
+app.get('/project/:ns/:project/*.md', project.doc);
+app.get('/project/:ns/:project/*',project.static);
 app.get('/project',project.list);
 app.post('/project',project.add);
 app.put('/project',project.update);

@@ -15,6 +15,8 @@ exports.signIn = function(req,res) {
         if(err) {
             res.json(err);
         } else {
+            res.cookie.user=user;
+            req.session.user=user;
             res.json("success");
         }
     });
