@@ -15,7 +15,7 @@ exports.signIn = function(req,res) {
         if(err) {
             res.json(err);
         } else {
-            res.cookie.user=user;
+            res.cookie("user",user,{"maxAge":2592000000});
             req.session.user=user;
             res.json("success");
         }
@@ -24,4 +24,9 @@ exports.signIn = function(req,res) {
 
 exports.login = function(req,res) {
     res.render('login',{title:"login"});
-}
+};
+
+exports.signOut = function(req,res) {
+    res.clearCookie("user",{"path":"/"});
+    res.redirect("/");
+};

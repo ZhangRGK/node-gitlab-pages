@@ -7,8 +7,6 @@ html
         meta(name="viewport",content="width=device-width,initial-scale=1.0")
     body
         .container
-            .alert.alert-dismissable.alert-danger.hidden
-                button.close(type="button",data-dismiss="alert",aria-hidden="true") &times;
             form.signIn-form(role="form")
                 div
                     h2 登录 #{title}
@@ -17,6 +15,7 @@ html
                     input.form-control(id="pwd",type="password",placeholder="密码",check-type="required",min-length="8")
                 div
                     button.btn.btn-lg.btn-primary.btn-block(type="button",id="login") 登录
+        .alert-bar
         script(src="/javascripts/lib/jquery-1.11.0.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
         script(src="/javascripts/lib/bootstrap3-validation.js")

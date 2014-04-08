@@ -48,9 +48,10 @@ if ('development' == app.get('env')) {
 //TODO 登录验证
 app.get('/login',routes.login);
 app.post('/signIn',routes.signIn);
-app.get('*',filter.premission);
+app.get('*',filter.permission);
 
 app.get('/', routes.index);
+app.get('/signOut', routes.signOut);
 
 app.get('/project/:ns/:project/:title.html', project.html);
 app.get('/project/:ns/:project/*.md', project.doc);

@@ -1,4 +1,4 @@
-exports.premission = function(req,res,next) {
+exports.permission = function(req,res,next) {
     var user = req.session.user;
     if(!user) {
         user = req.cookies.user;
