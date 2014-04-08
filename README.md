@@ -20,7 +20,7 @@
 
 ## webhook
 
-在gitlab中配置 push events : http://221.213.57.38:8081/hooks/doc[| proto]
+在gitlab中配置 push events : `http://221.213.57.38:8081/hooks/doc[| proto]`
 
 ## 文档
 
