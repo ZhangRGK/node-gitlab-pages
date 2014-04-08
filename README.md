@@ -2,7 +2,7 @@
 
 基于gitlab-api,nodegit,markdown-js的类github-pages应用。
 
-## 知识点
+## 依赖
 
 [express](http://expressjs.jser.us/)
 
@@ -18,9 +18,9 @@
 
     npm install
 
-## webhook
+## gitlab-webhook
 
-在gitlab中配置 push events : `http://221.213.57.38:8081/hooks/doc[| proto]`
+在gitlab中配置 push events : `http://ip:8081/hooks/doc[| proto]`
 
 ## 文档
 
