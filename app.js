@@ -53,7 +53,7 @@ app.get('*',filter.permission);
 app.get('/', routes.index);
 app.get('/signOut', routes.signOut);
 
-app.get('/project/:ns/:project/:title.html', project.html);
+app.get('/project/:ns/:project/*.html', project.html);
 app.get('/project/:ns/:project/*.md', project.doc);
 app.get('/project/:ns/:project/*',project.static);
 app.get('/project',project.list);

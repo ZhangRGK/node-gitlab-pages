@@ -10,6 +10,20 @@ $(function() {
                 }
             });
     });
+
+    $("#pwd").keypress(function(event) {
+        if(event.keyCode == 13) {
+            $.post("/signIn",{"user": $("#signInMark").val(), "pwd": $("#pwd").val()})
+                .done(function(data) {
+                    console.log(data);
+                    if(data == "success") {
+                        window.location.href="/";
+                    } else {
+                        showMessage(data,"danger",null);
+                    }
+                });
+        }
+    });
 });
 
 var showMessage = function (message, type, millisecond) {

@@ -17,14 +17,14 @@ var exec = function() {
             "cd repo/",
             task.ns,
             "/",
-            task.project,
+            task.name,
             "/doc && git pull ",
             task.url,
             " ",
             task.branch,
             ":",
             task.branch
-        ].join();
+        ].join("");
         console.log("pull task running:"+pullCmd);
         process.exec(pullCmd,function(err, stdout, stderr) {
             if(err) {

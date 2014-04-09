@@ -4,9 +4,9 @@ block content
         for project in projects
             .col-xs-12.col-sm-12.col-md-12.col-lg-12
                 h1
-                    span(style="margin-right:20px") #{project.ns}/#{project.project}
+                    span(style="margin-right:20px") #{project.ns}/#{project.name}
                     .btn-group.btn-group-xs
-                        a.btn.btn-primary(href="/project/#{project.ns}/#{project.project}/index.html") Proto
-                        a.btn.btn-default(href="/project/#{project.ns}/#{project.project}/readme.md") Doc
+                        a.btn.btn-primary(href="/project/#{project.ns}/#{project.name}/proto/index.html") Proto
+                        a.btn.btn-default(href="/project/#{project.ns}/#{project.name}/README.md") Doc
                 p= project.desc
                 hr

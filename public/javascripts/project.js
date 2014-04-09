@@ -10,7 +10,8 @@ $(function() {
             "project":$("#f_project").val(),
             "url":$("#f_url").val(),
             "doc":$("#f_doc").val(),
-            "proto":$("#f_proto").val()
+            "proto":$("#f_proto").val(),
+            "desc":$("#f_desc").val()
         };
         $.post("/project",project)
             .done(function() {

@@ -6,15 +6,17 @@ var process = require('child_process');
 var projectService = require('../service/project');
 
 exports.html = function(req, res) {
+    var title = req.params[0];
     var urlPath = [
         'repo/',
         req.params.ns,
         '/',
         req.params.project,
         '/proto/',
-        req.params.title?req.params.title:"index",
+        title?title:"proto/index",
         '.html'
     ].join('');
+    console.log("proto urlPath:"+urlPath);
     var filePath = path.normalize('./' + urlPath);
     fs.exists(filePath, function  (exists) {
         if(!exists) {
@@ -28,7 +30,6 @@ exports.html = function(req, res) {
 
 exports.doc = function(req, res) {
     var title = req.params[0];
-    console.log(title);
     var urlPath = [
         'repo/',
         req.params.ns,
@@ -38,7 +39,7 @@ exports.doc = function(req, res) {
         title?title:"readme",
         '.md'
     ].join('');
-    console.log("urlPath:"+urlPath);
+    console.log("doc urlPath:"+urlPath);
     var filePath = path.normalize('./' + urlPath);
     fs.exists(filePath, function  (exists) {
         if(!exists) {
@@ -54,14 +55,27 @@ exports.doc = function(req, res) {
 
 exports.static = function(req, res) {
     var title = req.params[0];
-    var urlPath = [
-        'repo/',
-        req.params.ns,
-        '/',
-        req.params.project,
-        '/doc/',
-        title
-    ].join('');
+    var urlPath;
+    if(title.indexOf("proto")>=0) {
+        urlPath = [
+            'repo/',
+            req.params.ns,
+            '/',
+            req.params.project,
+            '/proto/',
+            title
+        ].join('');
+    } else {
+        var urlPath = [
+            'repo/',
+            req.params.ns,
+            '/',
+            req.params.project,
+            '/doc/',
+            title
+        ].join('');
+    }
+    console.log("static urlPath:"+urlPath);
     var filePath = path.normalize('./' + urlPath);
     fs.exists(filePath, function  (exists) {
         if(!exists) {
@@ -75,10 +89,12 @@ exports.static = function(req, res) {
 exports.add = function(req, res) {
     var p = {
         "ns":req.body.ns,
-        "project":req.body.project,
+        "name":req.body.project,
+        "project":req.body.url.substring(req.body.url.lastIndexOf("/")+1,req.body.url.indexOf(".git")),
         "url":req.body.url,
         "doc":req.body.doc,
-        "proto":req.body.proto
+        "proto":req.body.proto,
+        "desc":req.body.desc
     };
     projectService.add(p,function(err) {
         if(err) {
@@ -93,7 +109,7 @@ exports.add = function(req, res) {
                             " repo/",
                             p.ns,
                             "/",
-                            p.project,
+                            p.name,
                             "/doc -b ",
                             p.doc
                         ].join('');
@@ -107,7 +123,7 @@ exports.add = function(req, res) {
                             " repo/",
                             p.ns,
                             "/",
-                            p.project,
+                            p.name,
                             "/proto -b ",
                             p.proto
                         ].join('');
