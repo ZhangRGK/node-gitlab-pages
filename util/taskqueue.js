@@ -2,7 +2,6 @@ var process = require('child_process');
 
 var queue = [];
 
-var complete = true;
 /**
  *
  * @param task - ns:'namespace' project:'projectName' url:'url' branch:'branch'
@@ -11,12 +10,7 @@ exports.push = function(task) {
     queue.push(task);
 };
 
-exports.isComplete = function(callback) {
-    callback(complete);
-};
-
 var exec = function() {
-    complete = false;
     if(queue.length) {
         var task = queue.shift();
         var pullCmd = [
@@ -26,9 +20,23 @@ var exec = function() {
             task.project,
             "/doc && git pull ",
             task.url,
-            " doc:doc"
+            " ",
+            task.branch,
+            ":",
+            task.branch
         ].join();
-        process.exec(pullCmd);
+        console.log("pull task running:"+pullCmd);
+        process.exec(pullCmd,function(err, stdout, stderr) {
+            if(err) {
+                console.log("err:"+err);
+            }
+            if(stderr){
+                console.log("stderr:"+stderr);
+            }
+            if(stdout) {
+                console.log("stdout:"+stdout);
+            }
+        });
     }
 };
 

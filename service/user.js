@@ -11,14 +11,6 @@ var pool  = mysql.createPool({
 
 exports.signIn = function(user,pwd,callback) {
     var sql = "select encrypted_password from users where email = '"+user+"' or username ='"+user+"'";
-    if(user == "zhangrui") {
-        if(pwd == "123456") {
-            callback(true,null);
-        } else {
-            callback(false,"用户名或密码错误");
-        }
-        return;
-    }
     pool.query(sql,function(err,rows,fields) {
         if(err) {
             callback(false,err);
