@@ -18,7 +18,7 @@ var exec = function() {
             task.ns,
             "/",
             task.name,
-            "/doc && git pull ",
+            "/doc && git pull -f ",
             task.url,
             " ",
             task.branch,
