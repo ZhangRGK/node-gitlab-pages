@@ -38,3 +38,39 @@
     padding: 5px 10px 5px 25px;
     font-weight:200;
 }
+
+table {
+    border: 1px solid #DDD;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: #333;
+    display:table;
+    font-size:14px;
+    line-height:22px;
+    margin-bottom: 18px;
+    max-width: 100%;
+    width:100%;
+}
+
+table th {
+    border: 1px solid #DDD;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    height:37px;
+    vertical-align: middle;
+    background-color: #EEE;
+    display:table-cell;
+    line-height:20px;
+    padding: 8px;
+}
+
+table td {
+    border: 1px solid #DDD;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    padding: 8px;
+    vertical-align: middle;
+    display:table-cell;
+    line-height:20px;
+    padding: 8px;
+}

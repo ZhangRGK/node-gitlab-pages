@@ -27,9 +27,7 @@
 
 ## TODO
 
-- web hooks(待测试)
-- 登录后写入cookies保持登录状态(待测试)
-- 登出按钮(待测试)
+- project信息迁移到数据库
 - project 页面手机展示
 - 修改ui与gitlab相近
 - 检索功能

@@ -15,6 +15,7 @@ exports.pullDoc = function(req,res) {
                 for(var i in data.projects) {
                     if(data.projects[i].project == project) {
                         taskqueue.push({"ns":data.projects[i].ns,"name":data.projects[i].name,"url":data.projects[i].url,"branch":data.projects[i].doc});
+                        data.projects[i].update = (new Date()).toLocaleString();
                     }
                 }
             }
@@ -34,10 +35,10 @@ exports.pullProto = function(req,res) {
                 for(var i in data.projects) {
                     if(data.projects[i].project == project) {
                         taskqueue.push({"ns":data.projects[i].ns,"name":data.projects[i].name,"url":data.projects[i].url,"branch":data.projects[i].proto});
+                        data.projects[i].update = (new Date()).toLocaleString();
                     }
                 }
             }
         }
-        res.json("done");
     });
 };

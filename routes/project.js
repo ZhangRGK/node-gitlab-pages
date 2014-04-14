@@ -1,5 +1,5 @@
 var path = require('path');
-var markdown = require('markdown-js');
+var marked = require('marked');
 var fs = require('fs');
 var process = require('child_process');
 
@@ -46,7 +46,7 @@ exports.doc = function(req, res) {
             res.render("404",{title:"gitlab-pages"});
         } else {
             var content = fs.readFileSync(filePath, "utf-8");
-            var html_content = markdown.parse(content);
+            var html_content = marked(content);
             res.render("showmd", {title: req.params.title ,content:html_content,scope:req.params.project+"项目",type:"md"});
         }
     });
